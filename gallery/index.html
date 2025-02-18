@@ -1,95 +1,68 @@
 ---
 layout: page
-title: "My Pictures"
-description: "Pictures Are Memories Captured"
+title: "album"
+description: "masonry"
 active: gallery
-header-img: "img/writing-bg.jpg"
+header-img: "img/gallery-bg.jpg"
+album-title: "my 9th album"
 images:
- - image_path: /gallery/albums/alb001.jpg
-   gallery-folder: /gallery/gallery001/
-   gallery-name: Trip to Egypt
-   gallery-date: December 2019
- - image_path: /gallery/albums/alb002.JPG
-   gallery-folder: /gallery/gallery002/
-   gallery-name: Happy Halloween
-   gallery-date: October 2023
- - image_path: /gallery/albums/alb003.jpg
-   gallery-folder: /gallery/gallery003/
-   gallery-name: Macro shots
-   gallery-date: April 2023
- - image_path: /gallery/albums/alb004.jpg
-   gallery-folder: /gallery/gallery004/
-   gallery-name: Sunday Afternoon Shots
-   gallery-date: September 2024
- - image_path: /gallery/albums/alb005.jpg
-   gallery-folder: /gallery/gallery005/
-   gallery-name: Trip to Bicol
-   gallery-date: August 2022
- - image_path: /gallery/albums/alb006.jpg
-   gallery-folder: /gallery/gallery006/
-   gallery-name: Trip to Taal Volcano
-   gallery-date: September 2024
- - image_path: /img/galleries/g007/DSC_2184.webp
-   gallery-folder: /gallery/gallery007/
-   gallery-name: Visiting Nihonbashi in Tokyo
-   gallery-date: January 2025
- - image_path: /img/galleries/g008/roadtrip.webp
-   gallery-folder: /gallery/gallery008/
-   gallery-name: Laguna Road Trip
-   gallery-date: November 2024
- - image_path: /img/galleries/g009/reflections03.webp
-   gallery-folder: /gallery/gallery009/
-   gallery-name: At The Roofdeck Garden
-   gallery-date: January 2025
+ - image_path: /gallery/archive/g09/bg1.jpg
+   caption: IMAGE TITLE
+   mfp-title: IMAGE TITLE
+   copyright: © photorama
+ - image_path: /gallery/archive/g09/bg2.jpg
+   caption: IMAGE TITLE
+   copyright: © photorama
+ - image_path: /gallery/archive/g09/bg3.jpg
+   caption: IMAGE TITLE
+   copyright: © photorama
 ---
 
 <html class="no-js" lang="en">
 <head>
 	<meta content="charset=utf-8">
-    <link rel="stylesheet" href="{{ "/css/selena.css" | prepend: site.baseurl }}">
 </head>
 
-
-    <body class="gallery">
+    <body>
  
 	<section id="content" role="main">
 		<div class="wrapper">
-	
-			<h2>{{page.title}}</h2>
-			
+	<br><br>
+			<h2>{{page.album-title}}</h2>
+
+
 			<!-- Gallery __-->
 			<div class="gallery masonry-gallery">
-				
-{% for image in page.images %}  	
+		
+{% for image in page.images %}  		
 
-	               <figure class="gallery-item">
-                         <figure class="effect-selena">
+				<figure class="gallery-item">
 					<header class='gallery-icon'>
-		       
-<a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
 
+<a href="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}" class="popup" title="{{ image.caption }}" data-caption="{{ image.copyright }}">
+<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
+						
 					</header>	
 					<figcaption class='gallery-caption'>
 						<div class="entry-summary">
-							<h3>{{image.gallery-name}}</h3>
-							<p>{{image.gallery-date}}</p>
+							<h3>{{image.caption}}</h3>
+							<p>{{image.copyright}}</p>
 						</div>
 					</figcaption>
-                       </figure>
 				</figure>
-							
-{% endfor %}		
 				
+{% endfor %}
+
 			</div>
-			
+
 		</div><!-- END .wrapper -->
 	</section>
 
-	    
 <!-- jQuery -->    
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- include image popups -->
+<script src="{{ site.baseurl }}/js/jquery.magnific-popup.js"></script>
 <script src="{{ site.baseurl }}/js/retina.min.js"></script>
 <!-- include Masonry -->
 <script src="{{ site.baseurl }}/js/isotope.pkgd.min.js"></script> 
@@ -103,5 +76,24 @@ images:
 <script src="{{ site.baseurl }}/js/scripts.js"></script>
 <!-- Modernizr -->
  <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+
+    <script type="text/javascript">
+      $(document).ready(function($) {
+        $('a.popup').magnificPopup({
+          type: 'image',
+	  gallery:{
+         enabled:true,
+         navigateByImgClick: true,
+         preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+       },
+      image: {
+         titleSrc: function(item) {
+              return item.el.attr('title') + '&nbsp;' + item.el.attr('data-caption');
+            }
+        }
+          // other options
+      });
+});
+    </script>
 
 </body></html>
