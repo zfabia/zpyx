@@ -34,8 +34,8 @@ comments :
 
 # Internal nav
 nav:
-  - JOURNAL: "https://zfabia.github.io/zpyx/journal/"
   - GALLERY: "https://zfabia.github.io/zpyx/gallery/"  
+  - JOURNAL: "https://zfabia.github.io/zpyx/journal/"
   - ABOUT: "https://zfabia.github.io/zpyx/about/"
   - GUESTBOOK : "https://pub1.bravenet.com/guestbook/50005949/"
   
