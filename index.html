@@ -6,97 +6,73 @@ description: ""
 images:
  - image_path: /img/slider/home01.jpg
    gallery-folder: /img/slider/
+   caption: "Home slide 1"
  - image_path: /img/slider/home02.jpg
    gallery-folder: /img/slider/
+   caption: "Home slide 2"
  - image_path: /img/slider/home03.jpg
    gallery-folder: /img/slider/
+   caption: "Home slide 3"
  - image_path: /img/slider/home04.jpg
-   gallery-folder: /img/slider/ 
+   gallery-folder: /img/slider/
+   caption: "Home slide 4"
 ---
 
+<section id="content" role="main">
+  <div class="wrapper">
 
-<html class="no-js" lang="en">
-<head>
-	<meta content="charset=utf-8">
+    <div class="position-absolute">
+      <h2 class="big no-margin"><strong>{{ page.main-title | escape }}</strong></h2>
+      {% if page.subtitle %}<h2>{{ page.subtitle | escape }}</h2>{% endif %}
+      {% if page.description %}
+      <div class="entry-summary">
+        <p>{{ page.description | escape }}</p>
+      </div>
+      {% endif %}
+      <br />
+    </div>
 
-<!-- CSS -->
-     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-     <link rel="stylesheet" href="{{ site.baseurl }}/css/main.css" type="text/css" media="screen" />
-      <link rel="stylesheet" href="{{ site.baseurl }}/css/galleries.css" media="screen" />
-<link rel="stylesheet" href="{{ site.baseurl }}/css/WYSIWYG.css" media="screen" />
+    <div class="gallery fullscreen-gallery kenburns-gallery" aria-label="Homepage gallery">
+      <canvas id="kenburns" aria-hidden="true"></canvas>
 
+      {% for image in page.images %}
+      <figure class="gallery-item">
+        <header class="gallery-icon">
+          <a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}" title="{{ image.caption | escape }}">
+            <img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"
+                 alt="{{ image.caption | escape }}"
+                 loading="lazy">
+          </a>
+        </header>
+        {% if image.caption %}
+        <figcaption class="gallery-caption">{{ image.caption | escape }}</figcaption>
+        {% endif %}
+      </figure>
+      {% endfor %}
 
+    </div><!-- /.gallery -->
 
-	<!-- Modernizr -->
-  <script src="{{ site.baseurl }}/js/modernizr.js"></script>
+  </div><!-- /.wrapper -->
+</section>
 
-
-
-  
-
-</head>
-
-<body class="fullscreen">
-
-<!-- MAIN CONTENT SECTION  _____________________________________________-->
-	<section id="content" role="main">
-		<div class="wrapper">
-
-			<!-- WYSIWYG -->
-
-		<div class="position-absolute">
-				<h2 class="big no-margin"><strong>{{ page.main-title }}</strong></h2>
-				<h2>{{ page.subtitle }}</h2> 
-                     <div class="entry-summary">
-							<p>{{ page.description }}</p>
-						</div><br />
-			</div>
-			
-			<div class="gallery fullscreen-gallery kenburns-gallery">
-
-				<canvas id="kenburns"></canvas>
-				
-{% for image in page.images %}  	
-
-				<figure class="gallery-item">
-					<header class='gallery-icon'>
-
-<a href="{{ site.url }}{{ site.baseurl }}{{ image.gallery-folder }}">
-<img src="{{ site.url }}{{ site.baseurl }}{{ image.image_path }}"></a>
-	
-				</header>	
-				</figure>
-
-{% endfor %}
-
-				</div>
-			<!-- END WYSIWYG -->
-			
-	
-		</div><!-- END .wrapper -->
-		
-	</section>
 
 <div id="footer" role="contentinfo">
 		<ul class="soc-icons">
 
-                 {% if site.facebook_username %}
-			<li>
-   <a href="https://facebook.com/{{ site.facebook_username }}" style="
-color:#dddddd; target="_blank" title="Facebook">
-                       <i class="fa fa-facebook"></i>
-                     </span>
-</a></li>
-    {% endif %}
+ {% if site.facebook_username %}
+	<li>
+      <a href="https://facebook.com/{{ site.facebook_username }}" style="color:#dddddd; target="_blank" title="Facebook"> <i class="fa fa-facebook"></i> </span>
+      </a>
+  </li>
+ {% endif %}
+
  {% if site.twitter_username %}
-			<li>
-   <a href="https://twitter.com/{{ site.twitter_username }}" style="
-color:#dddddd; target="_blank" title="Twitter">
-                       <i class="fa fa-twitter"></i>
-                     </span>
-</a></li>
-    {% endif %}
-                {% if site.instagram_username %}
+  <li>
+      <a href="https://twitter.com/{{ site.twitter_username }}" style="color:#dddddd; target="_blank" title="Twitter"> <i class="fa fa-twitter"></i> </span></a>
+  </li>
+ {% endif %}
+
+ {% if site.instagram_username %}
 			<li>
    <a href="https://instagram.com/{{ site.instagram_username }}" style="
 color:#dddddd; target="_blank" title="Instagram">
